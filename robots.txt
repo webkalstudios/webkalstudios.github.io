@@ -1,0 +1,5 @@
+# Tous les moteurs sont les bienvenus.
+User-agent: *
+Allow: /
+
+Sitemap: https://webkalstudios.github.io/sitemap.xml
