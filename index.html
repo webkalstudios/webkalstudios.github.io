@@ -214,7 +214,7 @@ img{display:block; max-width:100%}
 
 /* -------------------------------- Sections -------------------------------- */
 /* `scroll-margin-top` : sinon la barre collante masque le titre au clic d'un lien. */
-section{padding:84px 0 0; scroll-margin-top:92px}
+section{padding:84px 0 0; scroll-margin-top:120px}
 @media (min-width:900px){section{padding:116px 0 0}}
 .titre{max-width:52ch; margin-bottom:32px}
 .sur-titre{
@@ -242,6 +242,40 @@ section{padding:84px 0 0; scroll-margin-top:92px}
   display:grid; place-items:center; margin-bottom:8px;
 }
 .ico svg{width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round}
+
+/* ---------------------------- Tarifs ---------------------------- */
+.tarifs{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(248px,1fr))}
+.tarif{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r-card);
+  padding:28px 26px 30px; box-shadow:var(--ombre-carte);
+  display:flex; flex-direction:column; gap:14px;
+  transition:transform .22s ease, box-shadow .22s ease;
+}
+.tarif:hover{transform:translateY(-3px); box-shadow:var(--ombre-flottante)}
+/* Hauteurs réservées : sans elles, un titre sur deux lignes décale le prix
+   de sa carte et la ligne des montants n'est plus alignée. */
+.tarif h3{font-size:18px; font-weight:600; line-height:1.3; min-height:2.6em}
+.tarif .prix{
+  font-family:var(--font-display); font-weight:700; letter-spacing:-.03em;
+  font-size:34px; line-height:1; font-variant-numeric:tabular-nums;
+}
+.tarif .prix small{font-size:15px; font-weight:600; color:var(--muted); margin-left:5px; letter-spacing:0}
+.tarif .pour{color:var(--muted); font-size:14px; line-height:1.45; min-height:2.9em; margin-top:-8px}
+.tarif ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px}
+.tarif li{display:flex; gap:10px; align-items:flex-start; color:var(--ink-2); font-size:15px}
+.tarif li::before{
+  content:""; flex:none; width:16px; height:16px; margin-top:3px; border-radius:50%;
+  background:var(--hero-bg);
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 13l4 4L19 7' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/12px no-repeat;
+  mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 13l4 4L19 7' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/12px no-repeat;
+}
+.tarif .btn{margin-top:auto}
+.note-tarifs{
+  margin-top:14px; padding:20px 24px; border-radius:var(--r-bloc);
+  background:var(--vitre); border:1px solid var(--vitre-bord);
+  -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px);
+  color:var(--ink-2); font-size:15px;
+}
 
 /* -------------------------------- Déroulé --------------------------------- */
 .etapes{display:flex; flex-direction:column; gap:10px}
@@ -323,6 +357,7 @@ footer{padding:40px 0 52px; margin-top:84px}
       </a>
       <nav class="menu">
         <a href="#services">Ce que nous faisons</a>
+        <a href="#tarifs">Tarifs</a>
         <a href="#deroule">Comment ça se passe</a>
         <a class="btn btn-dark" href="#contact">Demander un devis</a>
       </nav>
@@ -422,6 +457,72 @@ footer{padding:40px 0 52px; margin-top:84px}
           </p>
         </article>
       </div>
+    </section>
+
+    <section id="tarifs">
+      <div class="titre monte">
+        <div class="sur-titre">Tarifs</div>
+        <h2>Des prix annoncés, pas de mauvaise surprise.</h2>
+        <p>
+          Chaque formule est à prix ferme. Vous savez ce que vous payez avant de commencer,
+          et le devis reprend exactement ces montants.
+        </p>
+      </div>
+
+      <div class="tarifs">
+        <article class="tarif monte">
+          <h3>Landing page</h3>
+          <div class="prix">25 000<small>XPF</small></div>
+          <p class="pour">Une seule page, qui va droit au but.</p>
+          <ul>
+            <li>Tout sur une page : activité, offre, contact</li>
+            <li>Pensée pour le téléphone</li>
+            <li>Bouton d&rsquo;appel et formulaire de contact</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact">Demander un devis</a>
+        </article>
+
+        <article class="tarif monte">
+          <h3>Site vitrine</h3>
+          <div class="prix">50 000<small>XPF</small></div>
+          <p class="pour">Plusieurs pages pour présenter votre activité.</p>
+          <ul>
+            <li>Plusieurs pages : accueil, services, contact…</li>
+            <li>Galerie photo de vos réalisations</li>
+            <li>Mises à jour des contenus par nos soins</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact">Demander un devis</a>
+        </article>
+
+        <article class="tarif monte">
+          <h3>Site vitrine + espace de gestion</h3>
+          <div class="prix">75 000<small>XPF</small></div>
+          <p class="pour">Le même site, que vous modifiez vous-même.</p>
+          <ul>
+            <li>Tout ce que contient le site vitrine</li>
+            <li>Un espace privé pour changer textes et photos</li>
+            <li>Horaires et tarifs à jour sans nous appeler</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact">Demander un devis</a>
+        </article>
+
+        <article class="tarif monte">
+          <h3>Boutique en ligne</h3>
+          <div class="prix">100 000<small>XPF</small></div>
+          <p class="pour">Pour vendre vos produits sur internet.</p>
+          <ul>
+            <li>Catalogue de produits et panier</li>
+            <li>Espace de gestion des produits et des commandes</li>
+            <li>Suivi des ventes depuis votre téléphone</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact">Demander un devis</a>
+        </article>
+      </div>
+
+      <p class="note-tarifs monte">
+        Un besoin qui ne rentre dans aucune case ? Dites-le-nous : nous étudions votre projet et
+        vous envoyons un devis sur mesure, au même principe — un prix ferme, annoncé à l&rsquo;avance.
+      </p>
     </section>
 
     <section id="deroule">
