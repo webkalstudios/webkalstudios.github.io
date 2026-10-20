@@ -237,6 +237,32 @@ section{padding:84px 0 0; scroll-margin-top:120px}
   mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 13l4 4L19 7' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/12px no-repeat;
 }
 .tarif .btn{margin-top:auto}
+.suivi{
+  margin-top:14px; display:grid; gap:22px 36px; align-items:center;
+  grid-template-columns:1fr; padding:30px 28px;
+  background:var(--hero-bg); color:var(--hero-fg); border-radius:var(--r-card);
+  box-shadow:var(--ombre-vitre);
+  background-image:radial-gradient(110% 90% at 100% 0%, color-mix(in srgb, var(--hero-fg) 10%, transparent), transparent 62%);
+}
+@media (min-width:820px){.suivi{grid-template-columns:minmax(0,1fr) auto; padding:34px 40px}}
+.suivi h3{font-size:21px; font-weight:600; margin-bottom:8px}
+.suivi p{color:var(--hero-muted); font-size:15.5px; max-width:56ch}
+.suivi ul{list-style:none; margin:12px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:8px 22px}
+.suivi li{display:flex; gap:9px; align-items:center; font-size:14.5px; color:var(--hero-fg)}
+.suivi li::before{
+  content:""; flex:none; width:15px; height:15px; border-radius:50%; background:var(--hero-fg);
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 13l4 4L19 7' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/11px no-repeat;
+  mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M5 13l4 4L19 7' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/11px no-repeat;
+}
+.suivi .montant{text-align:left}
+@media (min-width:820px){.suivi .montant{text-align:right}}
+.suivi .montant .prix{
+  font-family:var(--font-display); font-weight:700; letter-spacing:-.03em;
+  font-size:40px; line-height:1; font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+.suivi .montant .prix small{font-size:16px; font-weight:600; color:var(--hero-muted); margin-left:6px; letter-spacing:0}
+.suivi .montant .periode{color:var(--hero-muted); font-size:14px; margin-top:7px}
+
 .note-tarifs{
   margin-top:14px; padding:20px 24px; border-radius:var(--r-bloc);
   background:var(--vitre); border:1px solid var(--vitre-bord);
