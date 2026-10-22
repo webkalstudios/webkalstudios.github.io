@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demander un devis — WebKal Studios</title>
+<meta name="description" content="Décrivez votre projet de site en quelques champs. WebKal Studios vous répond avec une proposition claire et un prix ferme, sans engagement.">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<meta name="theme-color" content="#ECECEE">
+<link rel="canonical" href="https://webkalstudios.github.io/contact.html">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="WebKal Studios">
+<meta property="og:url" content="https://webkalstudios.github.io/contact.html">
+<meta property="og:title" content="Demander un devis — WebKal Studios">
+<meta property="og:description" content="Décrivez votre projet de site en quelques champs. Réponse avec une proposition claire et un prix ferme, sans engagement.">
+<meta property="og:image" content="https://webkalstudios.github.io/images/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Demander un devis — WebKal Studios">
+<meta name="twitter:description" content="Décrivez votre projet de site en quelques champs. Réponse avec une proposition claire et un prix ferme, sans engagement.">
+<meta name="twitter:image" content="https://webkalstudios.github.io/images/partage.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="decor" aria-hidden="true">
+  <span class="v1"></span><span class="v2"></span><span class="v3"></span><span class="v4"></span>
+</div>
+
+<header class="top" id="top">
+  <div class="shell">
+    <div class="top-in">
+      <a class="logo" href="index.html" aria-label="WebKal Studios, retour à l'accueil">
+        <img class="complet" src="images/logo.png" alt="WebKal Studios" width="662" height="238">
+        <img class="marque" src="images/marque.png" alt="WebKal Studios" width="214" height="232">
+      </a>
+      <nav class="menu">
+        <a href="index.html#services">Ce que nous faisons</a>
+        <a href="tarifs.html">Tarifs</a>
+        <a href="index.html#deroule">Comment ça se passe</a>
+        <a class="btn btn-dark" href="contact.html" aria-current="page">Demander un devis</a>
+        <button class="burger" type="button" aria-label="Ouvrir le menu"
+                aria-expanded="false" aria-controls="menu-mobile">
+          <svg class="ouvrir" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="fermer" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <nav class="menu-mobile" id="menu-mobile" hidden aria-label="Menu du site">
+      <a href="index.html#services">Ce que nous faisons</a>
+      <a href="tarifs.html">Tarifs</a>
+      <a href="index.html#deroule">Comment ça se passe</a>
+      <a href="contact.html" aria-current="page">Demander un devis</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="shell">
+    <div class="vitre">
+      <section class="hero" style="padding-top:48px">
+        <span class="chip">Demander un devis</span>
+        <h1>Parlons de votre projet.</h1>
+        <p class="sous">
+          Quelques champs suffisent. Dites-nous ce que vous faites et ce que vous attendez
+          d&rsquo;un site : nous revenons vers vous avec une proposition claire et un prix ferme,
+          sans engagement.
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <div class="shell">
+    <section id="formulaire" style="padding-top:44px">
+      <div class="form-carte monte">
+        <form id="devis" novalidate>
+          <!-- Clé du service qui transmet le message. À remplacer par la vraie. -->
+          <input type="hidden" name="access_key" value="CLE_A_REMPLACER">
+          <input type="hidden" name="subject" value="Demande de devis depuis le site WebKal">
+          <input type="hidden" name="from_name" value="Site WebKal Studios">
+
+          <!-- Champ piège : un robot le remplit, un visiteur ne le voit pas. -->
+          <div class="piege" aria-hidden="true">
+            <label for="site-web">Ne remplissez pas ce champ</label>
+            <input type="text" id="site-web" name="botcheck" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="champs">
+            <div class="champ">
+              <label for="nom">Votre nom ou votre entreprise <span class="obligatoire">— requis</span></label>
+              <input type="text" id="nom" name="Nom" required autocomplete="organization"
+                     placeholder="Boulangerie du Port">
+            </div>
+
+            <div class="champ">
+              <label for="activite">Votre activité</label>
+              <input type="text" id="activite" name="Activité" autocomplete="off"
+                     placeholder="Boulangerie, garage, coiffure…">
+            </div>
+
+            <div class="champ">
+              <label for="email">Votre e-mail <span class="obligatoire">— requis</span></label>
+              <input type="email" id="email" name="E-mail" required autocomplete="email"
+                     placeholder="contact@votreentreprise.nc">
+            </div>
+
+            <div class="champ">
+              <label for="telephone">Votre téléphone</label>
+              <input type="tel" id="telephone" name="Téléphone" autocomplete="tel"
+                     placeholder="+687 00 00 00">
+              <span class="aide">Si vous préférez qu&rsquo;on vous rappelle.</span>
+            </div>
+
+            <div class="champ large">
+              <label for="formule">Ce qui vous intéresse</label>
+              <select id="formule" name="Formule">
+                <option value="Je ne sais pas encore">Je ne sais pas encore</option>
+                <option value="Landing page — 25 000 XPF">Landing page — 25 000 XPF</option>
+                <option value="Site vitrine — 50 000 XPF">Site vitrine — 50 000 XPF</option>
+                <option value="Site vitrine + espace de gestion — 75 000 XPF">Site vitrine + espace de gestion — 75 000 XPF</option>
+                <option value="Autre projet">Autre projet</option>
+              </select>
+              <span class="aide">
+                Aucune importance si vous hésitez : on en parle et on choisit ensemble.
+              </span>
+            </div>
+
+            <div class="champ large">
+              <label for="projet">Votre projet en quelques mots <span class="obligatoire">— requis</span></label>
+              <textarea id="projet" name="Projet" required
+                        placeholder="Ce que vous faites, à qui vous vous adressez, ce que le site doit permettre…"></textarea>
+            </div>
+          </div>
+
+          <div class="form-pied">
+            <button class="btn btn-dark" type="submit" id="envoyer">
+              Envoyer ma demande
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <span class="mention">
+              Vos coordonnées servent uniquement à vous répondre. Elles ne sont ni revendues,
+              ni utilisées pour autre chose.
+            </span>
+          </div>
+
+          <div class="reponse ok" id="reponse-ok" hidden role="status">
+            <div>
+              <div class="titre-rep">Message bien reçu.</div>
+              <p>
+                Merci, votre demande nous est parvenue. Nous revenons vers vous à l&rsquo;adresse
+                que vous avez indiquée.
+              </p>
+            </div>
+          </div>
+
+          <div class="reponse ko" id="reponse-ko" hidden role="alert">
+            <div>
+              <div class="titre-rep">L&rsquo;envoi n&rsquo;a pas abouti.</div>
+              <p>
+                Quelque chose a bloqué de notre côté. Écrivez-nous directement à
+                <a href="mailto:webkalstudios@gmail.com">webkalstudios@gmail.com</a>, votre message
+                nous arrivera sans problème.
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="apres">
+      <div class="titre monte">
+        <div class="sur-titre">Et ensuite</div>
+        <h2>Ce qui se passe après votre message.</h2>
+      </div>
+
+      <div class="etapes">
+        <article class="etape monte">
+          <span class="n">01</span>
+          <h3>On vous répond</h3>
+          <p>Par e-mail, ou par téléphone si vous avez laissé votre numéro.</p>
+        </article>
+        <article class="etape monte">
+          <span class="n">02</span>
+          <h3>On parle de votre activité</h3>
+          <p>De vos clients, et de ce que le site doit leur faire faire.</p>
+        </article>
+        <article class="etape monte">
+          <span class="n">03</span>
+          <h3>Vous recevez un devis</h3>
+          <p>Avec un prix ferme. Vous décidez ensuite, sans engagement.</p>
+        </article>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="shell">
+    <div class="pied">
+      <a class="logo" href="index.html" aria-label="Retour à l'accueil">
+        <img src="images/logo.png" alt="WebKal Studios" width="662" height="238">
+      </a>
+      <span>Sites vitrines &middot; Nouméa</span>
+      <span class="droite">&copy; <span id="annee">2026</span> WebKal Studios</span>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+
+</body>
+</html>

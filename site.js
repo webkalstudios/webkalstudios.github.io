@@ -1,3 +1,60 @@
+// Formulaire de demande de devis.
+const devis = document.getElementById("devis");
+
+if (devis) {
+  const bouton = document.getElementById("envoyer");
+  const repOk = document.getElementById("reponse-ok");
+  const repKo = document.getElementById("reponse-ko");
+  const texteBouton = bouton.innerHTML;
+
+  const montrer = (quoi) => {
+    repOk.hidden = quoi !== "ok";
+    repKo.hidden = quoi !== "ko";
+  };
+
+  devis.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    montrer(null);
+
+    // Validation du navigateur : on laisse le premier champ fautif se signaler.
+    if (!devis.checkValidity()) {
+      devis.reportValidity();
+      const fautif = devis.querySelector(":invalid");
+      if (fautif instanceof HTMLElement) fautif.focus();
+      return;
+    }
+
+    bouton.disabled = true;
+    bouton.textContent = "Envoi en cours…";
+
+    const donnees = Object.fromEntries(new FormData(devis).entries());
+
+    try {
+      const reponse = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(donnees),
+      });
+      const resultat = await reponse.json().catch(() => ({}));
+
+      if (reponse.ok && resultat.success) {
+        devis.reset();
+        montrer("ok");
+        repOk.scrollIntoView({ block: "center", behavior: "smooth" });
+      } else {
+        montrer("ko");
+        console.error("[webkal] envoi refusé :", resultat);
+      }
+    } catch (erreur) {
+      montrer("ko");
+      console.error("[webkal] envoi impossible :", erreur);
+    } finally {
+      bouton.disabled = false;
+      bouton.innerHTML = texteBouton;
+    }
+  });
+}
+
 // Menu de navigation sur petit écran.
 const bouton = document.querySelector(".burger");
 const panneau = document.getElementById("menu-mobile");
