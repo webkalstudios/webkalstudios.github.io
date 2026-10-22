@@ -28,6 +28,8 @@ if (devis) {
     bouton.textContent = "Envoi en cours…";
 
     const donnees = Object.fromEntries(new FormData(devis).entries());
+    // « Répondre » doit écrire au visiteur, pas au service qui transmet le message.
+    donnees.replyto = donnees["E-mail"];
 
     try {
       const reponse = await fetch("https://api.web3forms.com/submit", {
