@@ -84,8 +84,9 @@
     <section id="formulaire" style="padding-top:44px">
       <div class="form-carte monte">
         <form id="devis" novalidate>
-          <!-- Clé du service qui transmet le message. À remplacer par la vraie. -->
-          <input type="hidden" name="access_key" value="CLE_A_REMPLACER">
+          <!-- Clé publique du service qui transmet le message. Ce n'est pas un secret :
+               elle n'autorise que l'envoi vers la boîte de WebKal Studios. -->
+          <input type="hidden" name="access_key" value="f62e1518-d370-4bb0-83ba-8a52a49185e4">
           <input type="hidden" name="subject" value="Demande de devis depuis le site WebKal">
           <input type="hidden" name="from_name" value="Site WebKal Studios">
 
