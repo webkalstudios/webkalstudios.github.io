@@ -646,3 +646,31 @@ footer{padding:40px 0 52px; margin-top:84px}
     background:radial-gradient(closest-side, color-mix(in srgb, var(--hero-fg) 18%, transparent), transparent);
   }
 }
+
+/* ---------------------- Accueil plus court sur téléphone ----------------------
+   Mesuré à 375 x 812 : l'en-tête prenait 758 px et les trois repères 358 px,
+   soit 1 254 px avant la première section. On resserre. */
+@media (max-width:599px){
+  .hero.avec-visuel{padding-top:34px !important; gap:18px}
+  .hero.avec-visuel .chip{margin-bottom:18px}
+  .hero.avec-visuel .actions{margin-top:22px}
+  /* Un seul bouton : la section « Comment ça se passe » suit juste en dessous. */
+  .hero.avec-visuel .actions .btn-vide{display:none}
+
+  /* On ne montre que le haut du téléphone : barre et image. */
+  .hero.avec-visuel .visuel{height:160px}
+  .hero.avec-visuel .telephone{bottom:-232px}
+  .hero.avec-visuel .flotte.f1{top:52px}
+  .hero.avec-visuel .visuel::before{bottom:-120px}
+
+  /* Les trois repères deviennent une seule carte à trois lignes. */
+  .reperes{
+    gap:0; margin-top:8px; overflow:hidden;
+    background:var(--surface); border:1px solid var(--line); border-radius:26px;
+    box-shadow:inset 0 1px 0 var(--reflet), var(--ombre-carte);
+  }
+  .repere{border:0; border-radius:0; box-shadow:none; background:transparent; padding:14px 20px}
+  .repere + .repere{border-top:1px solid var(--line)}
+  .repere .t{font-size:15px}
+  .repere p{font-size:13.5px; margin-top:2px}
+}
