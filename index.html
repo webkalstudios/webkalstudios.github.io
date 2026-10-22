@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap">
 
-<link rel="stylesheet" href="styles.css?v=20261022">
+<link rel="stylesheet" href="styles.css?v=20261022-3">
 </head>
 
 <body>
@@ -73,19 +73,47 @@
 <main>
   <div class="shell">
     <div class="vitre">
-      <section class="hero" style="padding-top:48px">
-        <span class="chip">Studio web &middot; Nouméa</span>
-        <h1>Des sites vitrines pour les commerces et les artisans d&rsquo;ici.</h1>
-        <p class="sous">
-          Vos clients vous cherchent sur leur téléphone. WebKal Studios vous construit un site clair
-          et rapide, qui dit ce que vous faites, où vous êtes, et comment vous joindre.
-        </p>
-        <div class="actions">
-          <a class="btn btn-clair" href="contact.html">
-            Parler de votre projet
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="btn btn-vide" href="#deroule">Comment ça se passe</a>
+      <section class="hero avec-visuel" style="padding-top:48px">
+        <div>
+          <span class="chip">Studio web &middot; Nouméa</span>
+          <h1>Des sites vitrines pour les commerces et les artisans d&rsquo;ici.</h1>
+          <p class="sous">
+            Vos clients vous cherchent sur leur téléphone. WebKal Studios vous construit un site clair
+            et rapide, qui dit ce que vous faites, où vous êtes, et comment vous joindre.
+          </p>
+          <div class="actions">
+            <a class="btn btn-clair" href="contact.html">
+              Parler de votre projet
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-vide" href="#deroule">Comment ça se passe</a>
+          </div>
+        </div>
+
+        <!-- Illustration : un site vitrine type sur téléphone. Aucun client réel n'y figure. -->
+        <div class="visuel" aria-hidden="true">
+          <div class="telephone">
+            <div class="ecran">
+              <div class="e-barre"><span class="e-logo"></span>Votre commerce<span class="e-menu"></span></div>
+              <div class="e-image"></div>
+              <div class="e-titre">Votre activité, en un coup d&rsquo;œil.</div>
+              <div class="e-lignes"><span></span><span></span><span class="court"></span></div>
+              <div class="e-bouton">Nous contacter</div>
+              <div class="e-infos">
+                <div><i></i>Horaires</div>
+                <div><i></i>Itinéraire</div>
+              </div>
+            </div>
+          </div>
+          <div class="flotte f1">
+            <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+            Appeler
+          </div>
+          <div class="flotte f2"><span class="pastille"></span>Ouvert</div>
+          <div class="flotte f3">
+            <svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            Itinéraire
+          </div>
         </div>
       </section>
 
@@ -108,8 +136,8 @@
 
   <div class="shell">
     <section id="services">
-      <div class="titre monte">
-        <div class="sur-titre">Ce que nous faisons</div>
+      <div class="titre titre-duo monte">
+        <div class="sur-titre"><span class="num">01</span> Ce que nous faisons</div>
         <h2>Un site que vous pouvez montrer, et qui travaille pour vous.</h2>
         <p>
           Pas de tableau de bord compliqué, pas d&rsquo;abonnement mensuel à une plateforme.
@@ -122,6 +150,7 @@
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="3"/><path d="M3 9h18M8 21h8"/></svg>
           </div>
+          <span class="rang">01</span>
           <h3>Site vitrine</h3>
           <p>
             Trois à six pages qui présentent votre activité, vos produits et vos horaires.
@@ -133,6 +162,7 @@
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg>
           </div>
+          <span class="rang">02</span>
           <h3>Rendez-vous et formulaires</h3>
           <p>
             Vos clients réservent un créneau ou vous écrivent directement depuis le site.
@@ -144,6 +174,7 @@
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m4 18 5-4 4 3 3-2 4 3"/></svg>
           </div>
+          <span class="rang">03</span>
           <h3>Textes et photos</h3>
           <p>
             Nous reprenons ce que vous avez déjà, ou nous l&rsquo;écrivons avec vous. Vos photos
@@ -155,6 +186,7 @@
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 3a9 9 0 0 1 9 9h-9z"/><path d="M12 8v4l3 2"/></svg>
           </div>
+          <span class="rang">04</span>
           <h3>Mise en ligne et suivi</h3>
           <p>
             Nom de domaine, hébergement, mises à jour des horaires ou des tarifs. Vous
@@ -165,8 +197,8 @@
     </section>
 
     <section id="deroule">
-      <div class="titre monte">
-        <div class="sur-titre">Comment ça se passe</div>
+      <div class="titre titre-duo monte">
+        <div class="sur-titre"><span class="num">02</span> Comment ça se passe</div>
         <h2>Cinq étapes, et vous savez toujours où on en est.</h2>
         <p>
           Chaque projet suit le même chemin. Vous validez avant qu&rsquo;on passe à la suite,
@@ -174,33 +206,33 @@
         </p>
       </div>
 
-      <div class="etapes">
-        <article class="etape monte">
-          <span class="n">01</span>
+      <ol class="frise">
+        <li class="pas monte">
+          <span class="pt">01</span>
           <h3>Brief</h3>
           <p>On parle de votre activité, de vos clients, et de ce que le site doit leur faire faire.</p>
-        </article>
-        <article class="etape monte">
-          <span class="n">02</span>
+        </li>
+        <li class="pas monte">
+          <span class="pt">02</span>
           <h3>Maquette</h3>
           <p>Vous voyez à quoi ressemblera le site avant qu&rsquo;une seule ligne de code soit écrite.</p>
-        </article>
-        <article class="etape monte">
-          <span class="n">03</span>
+        </li>
+        <li class="pas monte">
+          <span class="pt">03</span>
           <h3>Intégration</h3>
           <p>Nous construisons le site page par page, et le vérifions sur téléphone à chaque étape.</p>
-        </article>
-        <article class="etape monte">
-          <span class="n">04</span>
+        </li>
+        <li class="pas monte">
+          <span class="pt">04</span>
           <h3>Relecture client</h3>
           <p>Vous relisez tout, dans le détail. On corrige jusqu&rsquo;à ce que ça vous convienne.</p>
-        </article>
-        <article class="etape monte">
-          <span class="n">05</span>
+        </li>
+        <li class="pas monte">
+          <span class="pt">05</span>
           <h3>En ligne</h3>
           <p>Le site part sur votre domaine. Nous restons joignables pour la suite.</p>
-        </article>
-      </div>
+        </li>
+      </ol>
     </section>
 
     <section id="contact">
@@ -242,15 +274,33 @@
 
 <footer>
   <div class="shell">
-    <div class="pied">
-      <img src="images/logo.png" alt="WebKal Studios" width="662" height="238">
-      <span>Sites vitrines &middot; Nouméa</span>
-      <span class="droite">&copy; <span id="annee">2026</span> WebKal Studios</span>
+    <div class="pied pied-riche">
+      <div class="pied-marque">
+        <a class="logo" href="index.html" aria-label="WebKal Studios, accueil">
+          <img src="images/logo.png" alt="WebKal Studios" width="662" height="238">
+        </a>
+        <p>Sites vitrines pour les commerces, les artisans et les indépendants de Nouvelle-Calédonie.</p>
+      </div>
+      <nav class="pied-col" aria-label="Pages du site">
+        <div class="pied-titre">Pages</div>
+        <a href="index.html">Accueil</a>
+        <a href="tarifs.html">Tarifs</a>
+        <a href="contact.html">Demander un devis</a>
+      </nav>
+      <div class="pied-col">
+        <div class="pied-titre">Contact</div>
+        <a href="mailto:webkalstudios@gmail.com">webkalstudios@gmail.com</a>
+        <span>Nouméa, Nouvelle-Calédonie</span>
+      </div>
+      <div class="pied-bas">
+        <span>&copy; <span id="annee">2026</span> WebKal Studios</span>
+        <span>Fait à Nouméa</span>
+      </div>
     </div>
   </div>
 </footer>
 
-<script src="site.js?v=20261022"></script>
+<script src="site.js?v=20261022-3"></script>
 
 </body>
 </html>

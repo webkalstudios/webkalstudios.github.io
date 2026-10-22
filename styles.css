@@ -411,3 +411,206 @@ footer{padding:40px 0 52px; margin-top:84px}
 .reponse.ko{background:var(--surface-2); border:1px solid var(--line)}
 .reponse.ko p{color:var(--ink-2)}
 .reponse a{color:inherit}
+
+/* ==========================================================================
+   COUCHE PREMIUM
+   Ajoutée par-dessus la base : typographie plus fine, grain, reflets du verre,
+   détails au survol, visuel du héros, frise des étapes, pied de page riche.
+   Tout ce bloc peut être retiré d'un coup sans casser le reste.
+   ========================================================================== */
+
+:root{
+  --reflet:rgba(255,255,255,.78);          /* liseré lumineux en haut du verre et des cartes */
+  --ligne-forte:rgba(18,19,22,.16);        /* trait de la frise */
+  --bord-survol:rgba(18,19,22,.22);
+}
+@media (prefers-color-scheme:dark){:root{
+  --reflet:rgba(255,255,255,.07);
+  --ligne-forte:rgba(241,242,244,.2);
+  --bord-survol:rgba(241,242,244,.28);
+}}
+
+/* --- Grain très léger sur le fond : de la matière, comme un beau papier --- */
+.decor::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  opacity:.07; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .85 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+}
+@media (prefers-color-scheme:dark){ .decor::after{ filter:invert(1); mix-blend-mode:screen; opacity:.05 } }
+
+/* --- Typographie : plus grande, plus serrée, plus fine en très grand --- */
+.hero h1{font-size:clamp(34px,5.2vw,62px); font-weight:600; letter-spacing:-.045em; line-height:1.02}
+.hero .sous{font-size:clamp(16px,1.6vw,18.5px); line-height:1.6}
+.titre h2{font-size:clamp(28px,3.7vw,46px); font-weight:500; letter-spacing:-.04em; line-height:1.06}
+.contact h2{font-size:clamp(30px,4.4vw,54px); font-weight:500; letter-spacing:-.045em; line-height:1.04}
+.sur-titre{letter-spacing:.14em}
+.sur-titre .num{font-variant-numeric:tabular-nums; color:var(--ink); margin-right:2px}
+
+/* --- Verre : un liseré lumineux en haut, comme une vraie plaque de verre --- */
+.top-in{box-shadow:inset 0 1px 0 var(--reflet), var(--ombre-flottante)}
+.vitre{box-shadow:inset 0 1px 0 var(--reflet), var(--ombre-vitre)}
+.menu-mobile{box-shadow:inset 0 1px 0 var(--reflet), var(--ombre-flottante)}
+.note-tarifs{box-shadow:inset 0 1px 0 var(--reflet)}
+
+/* --- Cartes : même liseré, bord qui se précise au survol --- */
+.carte,.tarif,.etape,.repere,.form-carte{box-shadow:inset 0 1px 0 var(--reflet), var(--ombre-carte)}
+.carte,.tarif,.etape{transition:transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, border-color .3s ease}
+.carte:hover,.tarif:hover,.etape:hover{border-color:var(--bord-survol); box-shadow:inset 0 1px 0 var(--reflet), var(--ombre-flottante)}
+
+/* --- Boutons : léger dégradé, flèche qui avance au survol --- */
+.btn{letter-spacing:-.01em}
+.btn svg{transition:transform .25s ease}
+.btn:hover svg{transform:translateX(3px)}
+.btn-dark{
+  background:linear-gradient(180deg, color-mix(in srgb, var(--hero-bg) 86%, var(--hero-fg)) 0%, var(--hero-bg) 100%);
+  box-shadow:inset 0 1px 0 color-mix(in srgb, var(--hero-fg) 18%, transparent), var(--ombre-carte);
+}
+.btn-clair{box-shadow:0 10px 24px -12px rgba(0,0,0,.45)}
+
+/* ------------------------- Héros avec visuel ------------------------- */
+.hero.avec-visuel{display:grid; grid-template-columns:minmax(0,1fr); gap:36px; align-items:center}
+@media (min-width:1000px){
+  .hero.avec-visuel{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr); gap:12px; padding-right:32px}
+  .hero.avec-visuel h1{max-width:none; font-size:clamp(34px,4.9vw,60px)}
+}
+.visuel{position:relative; height:440px; display:none}
+@media (min-width:600px){ .visuel{display:block} }
+
+.telephone{
+  position:absolute; left:50%; top:50%; width:218px; height:436px;
+  transform:translate(-50%,-50%) rotate(-5deg);
+  border-radius:40px; padding:9px;
+  background:linear-gradient(155deg,
+    color-mix(in srgb, var(--hero-fg) 26%, transparent),
+    color-mix(in srgb, var(--hero-fg) 6%, transparent));
+  border:1px solid color-mix(in srgb, var(--hero-fg) 22%, transparent);
+  box-shadow:0 50px 90px -34px rgba(0,0,0,.65), inset 0 1px 0 color-mix(in srgb, var(--hero-fg) 35%, transparent);
+}
+.ecran{
+  width:100%; height:100%; border-radius:32px; overflow:hidden;
+  background:var(--surface); color:var(--ink);
+  padding:16px 14px; display:flex; flex-direction:column; gap:11px;
+}
+.e-barre{display:flex; align-items:center; gap:7px; font-size:10.5px; font-weight:600}
+.e-logo{width:16px; height:16px; border-radius:6px; background:var(--ink); flex:none}
+.e-menu{margin-left:auto; width:16px; height:9px; border-top:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); position:relative}
+.e-menu::after{content:""; position:absolute; left:0; right:0; top:2.5px; border-top:1.5px solid var(--ink)}
+.e-image{
+  height:122px; border-radius:16px; flex:none;
+  background:
+    radial-gradient(80% 70% at 75% 25%, color-mix(in srgb, var(--surface) 70%, transparent), transparent 60%),
+    linear-gradient(150deg, color-mix(in srgb, var(--ink) 16%, var(--surface)), color-mix(in srgb, var(--ink) 42%, var(--surface)));
+}
+.e-titre{font-family:var(--font-display); font-weight:700; font-size:16px; line-height:1.12; letter-spacing:-.03em}
+.e-lignes{display:flex; flex-direction:column; gap:5px}
+.e-lignes span{height:5px; border-radius:3px; background:var(--surface-2)}
+.e-lignes span.court{width:62%}
+.e-bouton{
+  align-self:flex-start; background:var(--hero-bg); color:var(--hero-fg);
+  font-size:10px; font-weight:600; padding:7px 13px; border-radius:999px;
+}
+.e-infos{margin-top:auto; display:flex; flex-direction:column; gap:6px}
+.e-infos div{display:flex; align-items:center; gap:8px; font-size:10px; font-weight:500;
+  background:var(--surface-2); border-radius:10px; padding:8px 10px}
+.e-infos i{width:9px; height:9px; border-radius:50%; background:var(--ink); opacity:.75; flex:none}
+
+.flotte{
+  position:absolute; display:inline-flex; align-items:center; gap:8px; white-space:nowrap;
+  padding:10px 15px 10px 12px; border-radius:999px; font-size:13px; font-weight:600;
+  color:var(--hero-fg);
+  background:color-mix(in srgb, var(--hero-fg) 12%, transparent);
+  border:1px solid color-mix(in srgb, var(--hero-fg) 22%, transparent);
+  -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);
+  box-shadow:0 20px 40px -18px rgba(0,0,0,.6), inset 0 1px 0 color-mix(in srgb, var(--hero-fg) 25%, transparent);
+  animation:flotter 7s ease-in-out infinite;
+}
+.flotte svg{width:15px; height:15px; fill:none; stroke:currentColor; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round}
+.flotte .pastille{width:8px; height:8px; border-radius:50%; background:currentColor; box-shadow:0 0 0 4px color-mix(in srgb, var(--hero-fg) 18%, transparent)}
+.flotte.f1{top:15%; right:calc(50% + 88px)}
+.flotte.f2{top:47%; left:calc(50% + 88px); animation-delay:-2.4s}
+.flotte.f3{bottom:13%; right:calc(50% + 72px); animation-delay:-4.6s}
+@keyframes flotter{0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)}}
+
+/* --------------------- Titres de section sur deux colonnes --------------------- */
+@media (min-width:900px){
+  .titre-duo{
+    max-width:none; display:grid; gap:20px 72px; align-items:end;
+    grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  }
+  .titre-duo .sur-titre{grid-column:1/-1; margin-bottom:0}
+  .titre-duo p{margin-top:0; padding-bottom:7px; color:var(--ink-2)}
+}
+
+/* ------------------------------ Services ------------------------------ */
+.carte{position:relative; padding:30px 28px 32px; gap:12px}
+.carte .ico{width:52px; height:52px; border-radius:16px; margin-bottom:10px;
+  box-shadow:inset 0 1px 0 color-mix(in srgb, var(--hero-fg) 18%, transparent)}
+.carte .ico svg{width:23px; height:23px}
+.carte h3{font-size:20px; line-height:1.25; letter-spacing:-.025em}
+@media (min-width:700px){ .carte h3{min-height:2.5em} }
+.carte .rang{
+  position:absolute; top:28px; right:28px;
+  font-family:var(--font-display); font-weight:600; font-size:13px;
+  color:var(--muted); font-variant-numeric:tabular-nums;
+}
+
+/* ------------------------- Frise des étapes ------------------------- */
+.frise{list-style:none; margin:0; padding:0; position:relative; display:grid}
+.frise::before{
+  content:""; position:absolute; left:22px; top:22px; bottom:40px; width:1px;
+  background:linear-gradient(180deg, var(--ligne-forte), var(--ligne-forte) 85%, transparent);
+}
+.pas{position:relative; padding:0 0 30px 68px}
+.pas .pt{
+  position:absolute; left:0; top:0; width:45px; height:45px; border-radius:50%;
+  display:grid; place-items:center; background:var(--surface); border:1px solid var(--line);
+  box-shadow:inset 0 1px 0 var(--reflet), var(--ombre-carte);
+  font-family:var(--font-display); font-weight:600; font-size:14px; font-variant-numeric:tabular-nums;
+}
+.pas:last-child .pt{background:var(--hero-bg); color:var(--hero-fg); border-color:var(--hero-bg)}
+.pas h3{font-size:19px; font-weight:600; letter-spacing:-.025em; padding-top:11px}
+.pas p{color:var(--ink-2); font-size:15.5px; margin-top:7px; max-width:42ch}
+
+@media (min-width:900px){
+  .frise{grid-template-columns:repeat(5,minmax(0,1fr)); gap:22px}
+  .frise::before{
+    left:22px; top:22px; bottom:auto; width:auto; height:1px;
+    right:calc((100% - 88px) / 5 - 22px);
+    background:var(--ligne-forte);
+  }
+  .pas{padding:0}
+  .pas .pt{position:relative}
+  .pas h3{padding-top:24px}
+  .pas p{font-size:15px}
+}
+
+/* ------------------------- Pied de page riche ------------------------- */
+.pied.pied-riche{
+  display:grid; grid-template-columns:minmax(0,1fr); gap:28px;
+  padding:32px 26px 22px; align-items:start;
+  box-shadow:inset 0 1px 0 var(--reflet);
+}
+@media (min-width:760px){
+  .pied.pied-riche{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr); padding:40px 40px 24px}
+}
+.pied-marque img{height:24px}
+.pied-marque p{margin-top:14px; max-width:34ch; color:var(--muted); font-size:14px; line-height:1.55}
+.pied-col{display:flex; flex-direction:column; gap:10px; font-size:14px; color:var(--ink-2)}
+.pied-col a{color:var(--ink-2); text-decoration:none; width:fit-content}
+.pied-col a:hover{color:var(--ink); text-decoration:underline; text-underline-offset:3px}
+.pied-titre{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:2px}
+.pied-bas{
+  grid-column:1/-1; display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px;
+  padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .flotte{animation:none}
+  .btn:hover svg{transform:none}
+}
+
+/* Coordonnées sur téléphone : empilées et centrées, au lieu de décalées. */
+@media (max-width:600px){
+  .coord{flex-direction:column; align-items:center; text-align:center; gap:16px}
+  .coord div{min-width:0}
+}
