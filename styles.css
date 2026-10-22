@@ -674,3 +674,12 @@ footer{padding:40px 0 52px; margin-top:84px}
   .repere .t{font-size:15px}
   .repere p{font-size:13.5px; margin-top:2px}
 }
+
+/* Bouton Messenger : l'icône bulle ne glisse pas au survol, contrairement aux flèches. */
+.btn:hover svg.bulle{transform:none}
+.btn svg.bulle path + path{fill:currentColor; stroke:none}
+@media (max-width:599px){
+  /* Deux boutons de contact (formulaire, Messenger) : pleine largeur, l'un sous l'autre. */
+  .contact .actions{flex-direction:column; align-items:stretch; gap:10px}
+  .contact .actions .btn{width:100%; min-height:50px}
+}
