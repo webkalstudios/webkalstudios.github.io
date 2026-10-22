@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://webkalstudios.github.io/sitemap.xml
+Sitemap: https://webkal.net/sitemap.xml
