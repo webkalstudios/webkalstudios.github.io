@@ -95,6 +95,46 @@ if (bouton && panneau) {
   });
 }
 
+// Parties de l'accueil, avec des adresses sans « # » : /services, /comment-ca-se-passe.
+const parties = { "/": "top", "/services": "services", "/comment-ca-se-passe": "deroule" };
+const surAccueil = ["/", "/index", "/index.html"].includes(location.pathname);
+
+if (surAccueil) {
+  const aller = (id, comment) => {
+    const cible = document.getElementById(id);
+    if (!cible) return false;
+    if (id === "top") scrollTo({ top: 0, behavior: comment });
+    else cible.scrollIntoView({ behavior: comment });
+    return true;
+  };
+
+  // Sur l'accueil, un lien de menu fait défiler la page sans toucher à l'adresse.
+  document.addEventListener("click", (e) => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const lien = e.target instanceof Element ? e.target.closest("a[href]") : null;
+    const id = lien && parties[lien.getAttribute("href")];
+    if (id && aller(id, "smooth")) e.preventDefault();
+  });
+
+  // Arrivée par /services ou /comment-ca-se-passe : on descend tout de suite à la partie.
+  let demande = null;
+  try {
+    demande = sessionStorage.getItem("partie");
+    sessionStorage.removeItem("partie");
+  } catch {}
+
+  // Ancien lien en « /#services » : le navigateur a déjà défilé, on nettoie l'adresse.
+  if (!demande && location.hash) {
+    demande = location.hash.slice(1);
+    history.replaceState(null, "", "/");
+  }
+
+  if (demande && aller(demande, "instant")) {
+    // Les polices et images peuvent décaler la page : on recale une fois tout chargé.
+    addEventListener("load", () => aller(demande, "instant"), { once: true });
+  }
+}
+
 // Apparition douce des blocs, désactivée si l'appareil préfère moins d'animation.
 const douceur = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const blocs = document.querySelectorAll(".monte");
