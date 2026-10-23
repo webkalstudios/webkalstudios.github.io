@@ -540,6 +540,20 @@ h1,h2,h3{letter-spacing:-.03em}
 .m-pied .m-ligne{background:rgba(245,246,247,.18); margin:9px 0}
 .m-pied-btn{display:inline-block; margin-top:12px; padding:8px 14px; border-radius:999px; background:#F5F6F7; color:#141517; font-size:10.5px; font-weight:600}
 
+/* Vrai site en version mobile dans l'écran : 375 px de large, réduit à la taille de l'écran
+   (248 px), sous la barre d'état. Le faux mini-site reste dessous tant qu'il charge. */
+.ecran-site{position:absolute; left:0; top:40px; width:375px; height:738px; border:0; background:#ECECEE;
+  transform:scale(.6613); transform-origin:0 0; pointer-events:none; opacity:0; transition:opacity .8s ease; z-index:1}
+.ecran-site.pret{opacity:1}
+.m-statut{z-index:2}
+/* Une fois le vrai site affiché, le faux mini-site dessous s'arrête (inutile de l'animer). */
+.ecran:has(.ecran-site.pret) .defile{animation:none; visibility:hidden}
+
+/* Page affichée dans le téléphone : pas de barre de défilement, pas de téléphone dans le téléphone. */
+html.apercu{scrollbar-width:none}
+html.apercu::-webkit-scrollbar{display:none}
+html.apercu .ecran-site{display:none}
+
 /* --- Cartes : liseré dégradé et reflet sous la souris --- */
 .carte,.tarif,.repere,.etape{position:relative; overflow:hidden; isolation:isolate;
   border-color:transparent;

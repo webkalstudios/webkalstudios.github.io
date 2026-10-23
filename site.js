@@ -171,6 +171,60 @@ if (sourisFine && !calme) {
   });
 }
 
+// Le téléphone du haut de page affiche le vrai site en version mobile, qui défile tout seul.
+// Dans cet aperçu (adresse « /?apercu »), on ne recharge pas de téléphone : pas de miroir sans fin.
+const ecranSite = document.querySelector(".ecran-site");
+const dansApercu = document.documentElement.classList.contains("apercu");
+
+if (ecranSite && !dansApercu) {
+  ecranSite.addEventListener("load", () => {
+    const fen = ecranSite.contentWindow;
+    const doc = ecranSite.contentDocument;
+    if (!fen || !doc) return;
+    ecranSite.classList.add("pret");
+    if (calme) return;
+
+    // On ne fait défiler que si le téléphone est à l'écran (économise la batterie).
+    let visible = true;
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+    }).observe(ecranSite);
+
+    const haut = (sel) => {
+      const el = doc.querySelector(sel);
+      return el ? Math.max(0, el.getBoundingClientRect().top + fen.scrollY - 60) : 0;
+    };
+    const arrets = () => [0, haut("#services"), haut("#deroule"), haut("#contact"), 0];
+    const lisse = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+    let i = 0;
+    const suivant = () => {
+      const cibles = arrets();
+      const depart = fen.scrollY;
+      const arrivee = cibles[(i + 1) % cibles.length];
+      i = (i + 1) % (cibles.length - 1);
+      const duree = Math.min(2600, 900 + Math.abs(arrivee - depart) * 0.9);
+      const debut = performance.now();
+      const pas = (t) => {
+        if (!visible) {
+          requestAnimationFrame(pas);
+          return;
+        }
+        const p = Math.min(1, (t - debut) / duree);
+        fen.scrollTo({ top: depart + (arrivee - depart) * lisse(p), behavior: "instant" });
+        if (p < 1) requestAnimationFrame(pas);
+        else setTimeout(suivant, 2200);
+      };
+      requestAnimationFrame(pas);
+    };
+    setTimeout(suivant, 2600);
+  });
+  // Chargé après la page elle-même, pour ne pas la ralentir.
+  addEventListener("load", () => {
+    ecranSite.src = "/?apercu";
+  }, { once: true });
+}
+
 // Apparition douce des blocs, désactivée si l'appareil préfère moins d'animation.
 const douceur = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const blocs = document.querySelectorAll(".monte");
