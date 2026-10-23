@@ -137,6 +137,40 @@ if (surAccueil) {
   }
 }
 
+// Finitions à la souris (ordinateur seulement, et jamais si l'appareil préfère moins d'animation) :
+// le téléphone s'incline vers le curseur, une lumière le suit, et les cartes ont un reflet.
+const sourisFine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+const calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (sourisFine && !calme) {
+  const heros = document.querySelector(".hero.accueil");
+  if (heros) {
+    let image = 0;
+    heros.addEventListener("pointermove", (e) => {
+      cancelAnimationFrame(image);
+      image = requestAnimationFrame(() => {
+        const r = heros.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width) * 2 - 1;
+        const y = ((e.clientY - r.top) / r.height) * 2 - 1;
+        heros.style.setProperty("--px", x.toFixed(3));
+        heros.style.setProperty("--py", y.toFixed(3));
+      });
+    });
+    heros.addEventListener("pointerleave", () => {
+      heros.style.setProperty("--px", "0");
+      heros.style.setProperty("--py", "0");
+    });
+  }
+
+  document.querySelectorAll(".carte, .tarif, .repere, .etape").forEach((carte) => {
+    carte.addEventListener("pointermove", (e) => {
+      const r = carte.getBoundingClientRect();
+      carte.style.setProperty("--x", `${e.clientX - r.left}px`);
+      carte.style.setProperty("--y", `${e.clientY - r.top}px`);
+    });
+  });
+}
+
 // Apparition douce des blocs, désactivée si l'appareil préfère moins d'animation.
 const douceur = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const blocs = document.querySelectorAll(".monte");

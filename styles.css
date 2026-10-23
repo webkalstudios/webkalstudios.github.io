@@ -485,3 +485,105 @@ footer{padding:96px 0 28px}
   *,*::before,*::after{animation:none !important; transition:none !important}
   .monte{opacity:1; transform:none}
 }
+
+/* ==========================================================================
+   FINITIONS « STUDIO » (24 octobre 2026)
+   Typographie plus précise, entrée animée, téléphone qui suit la souris,
+   barre d'état, bandeau défilant, reflets sur les cartes, signature en bas.
+   Bloc autonome : le retirer ramène à la version précédente.
+   ========================================================================== */
+
+/* --- Typographie plus précise --- */
+body{letter-spacing:-.005em}
+h1,h2,h3{letter-spacing:-.03em}
+.titre h2,.contact h2{font-weight:500; letter-spacing:-.04em; line-height:1.06}
+.titre h2{font-size:clamp(32px, 4.4vw, 56px)}
+.contact h2{font-size:clamp(36px, 5.6vw, 72px)}
+.hero h1{letter-spacing:-.035em}
+.chip,.sur-titre{font-size:11.5px; letter-spacing:.2em}
+.carte h3,.tarif h3,.pas h3,.etape h3{font-weight:500; letter-spacing:-.02em}
+.prix{font-weight:600; letter-spacing:-.045em}
+
+/* --- Grand nom : dégradé posé lettre par lettre (pour pouvoir les animer) --- */
+.mot{background:none; -webkit-background-clip:border-box; background-clip:border-box; color:inherit; opacity:1; letter-spacing:-.045em}
+.mot span{display:inline-block;
+  background:linear-gradient(180deg, var(--mot-haut) 8%, var(--mot-bas) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent}
+
+/* --- Lumière qui suit la souris sur le bloc foncé --- */
+.hero.accueil::before{content:""; position:absolute; inset:0; pointer-events:none; z-index:0; opacity:.9;
+  background:radial-gradient(520px 420px at calc((var(--px, 0) + 1) * 50%) calc((var(--py, 0) + 1) * 50%),
+    color-mix(in srgb, var(--hero-fg) 9%, transparent), transparent 70%);
+  transition:background .2s linear}
+.scene-zone{z-index:1}
+
+/* --- Téléphone : support qui s'incline vers le curseur --- */
+.pivot{position:absolute; inset:0; transform-style:preserve-3d;
+  transform:rotateY(calc(var(--px, 0) * 9deg)) rotateX(calc(var(--py, 0) * -7deg));
+  transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+
+/* Barre d'état de l'écran (fixe, au-dessus du contenu qui défile) */
+.m-statut{position:absolute; top:0; left:0; right:0; height:44px; z-index:2; display:flex; align-items:center; justify-content:space-between;
+  padding:0 24px 0 28px; font-size:11px; font-weight:600; color:#121316;
+  background:linear-gradient(#FAFAFB 70%, rgba(250,250,251,0))}
+.m-icones{display:flex; align-items:center; gap:4px}
+.m-icones i{display:block; background:#121316}
+.m-icones .reseau{width:14px; height:8px; clip-path:polygon(0 100%, 22% 100%, 22% 70%, 0 70%, 0 100%, 26% 100%, 26% 50%, 48% 50%, 48% 100%, 52% 100%, 52% 28%, 74% 28%, 74% 100%, 78% 100%, 78% 0, 100% 0, 100% 100%)}
+.m-icones .wifi{width:12px; height:9px; clip-path:polygon(50% 100%, 0 32%, 16% 14%, 50% 0, 84% 14%, 100% 32%)}
+.m-icones .batterie{width:20px; height:9px; border-radius:3px; background:transparent; box-shadow:inset 0 0 0 1px #121316; position:relative}
+.m-icones .batterie::after{content:""; position:absolute; inset:2px 5px 2px 2px; border-radius:1px; background:#121316}
+.m-barre{padding-top:50px}
+
+/* --- Cartes : liseré dégradé et reflet sous la souris --- */
+.carte,.tarif,.repere,.etape{position:relative; overflow:hidden; isolation:isolate;
+  border-color:transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(180deg, color-mix(in srgb, var(--ink) 16%, transparent), color-mix(in srgb, var(--ink) 4%, transparent)) border-box}
+.carte::after,.tarif::after,.repere::after,.etape::after{content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  opacity:0; transition:opacity .35s ease;
+  background:radial-gradient(260px circle at var(--x, 50%) var(--y, 0%), color-mix(in srgb, var(--ink) 7%, transparent), transparent 70%)}
+.carte:hover::after,.tarif:hover::after,.repere:hover::after,.etape:hover::after{opacity:1}
+.carte:hover,.tarif:hover{transform:translateY(-4px)}
+.carte .ico{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.carte:hover .ico{transform:rotate(-6deg) scale(1.06)}
+
+/* --- Bloc contact : liseré lumineux en haut --- */
+.contact::before{content:""; position:absolute; left:10%; right:10%; top:0; height:1px;
+  background:linear-gradient(90deg, transparent, color-mix(in srgb, var(--hero-fg) 55%, transparent), transparent)}
+
+/* --- Bandeau défilant --- */
+.bandeau{margin-top:56px; padding:18px 0; overflow:hidden; border-block:1px solid var(--line);
+  -webkit-mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)}
+.bandeau-piste{display:flex; align-items:center; gap:34px; width:max-content; animation:bandeau 38s linear infinite}
+.bandeau-piste span{font-size:clamp(20px, 2.4vw, 30px); font-weight:500; letter-spacing:-.03em; white-space:nowrap; color:var(--ink)}
+.bandeau-piste i{width:8px; height:8px; border-radius:50%; border:1px solid var(--muted); flex:none}
+@keyframes bandeau{to{transform:translateX(-50%)}}
+.bandeau:hover .bandeau-piste{animation-play-state:paused}
+
+/* --- Signature en bas de page --- */
+.pied-mot{margin-top:28px; text-align:center; font-weight:800; line-height:.8; letter-spacing:-.06em;
+  font-size:clamp(72px, 21vw, 300px); user-select:none; pointer-events:none;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--ink) 16%, transparent), transparent 92%);
+  -webkit-background-clip:text; background-clip:text; color:transparent}
+
+/* --- Entrée de la page (seulement si l'appareil accepte les animations) --- */
+@media (prefers-reduced-motion:no-preference){
+  .mot span{animation:lettre 1.1s cubic-bezier(.2,.8,.2,1) both; animation-delay:calc(var(--i) * 70ms + 120ms)}
+  @keyframes lettre{from{opacity:0; transform:translateY(45%); filter:blur(10px)} to{opacity:1; transform:none; filter:none}}
+  .scene{animation:entree 1.5s cubic-bezier(.2,.8,.2,1) .5s both}
+  @keyframes entree{from{opacity:0; translate:0 70px} to{opacity:1; translate:0 0}}
+  .intro,.accueil .actions,.reseaux,.vertical{animation:fondu 1s ease 1s both}
+  @keyframes fondu{from{opacity:0; translate:0 14px} to{opacity:1; translate:0 0}}
+  .reperes{animation:fondu 1s ease 1.2s both}
+}
+
+@media (max-width:599px){
+  .bandeau{margin-top:40px; padding:14px 0}
+  .bandeau-piste{gap:24px; animation-duration:30s}
+  .pied-mot{margin-top:20px}
+  .carte:hover,.tarif:hover{transform:none}
+  /* Les trois repères restent regroupés dans une seule carte sur téléphone. */
+  .repere{background:transparent; border:0}
+}
