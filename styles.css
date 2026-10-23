@@ -534,6 +534,12 @@ h1,h2,h3{letter-spacing:-.03em}
 .m-icones .batterie::after{content:""; position:absolute; inset:2px 5px 2px 2px; border-radius:1px; background:#121316}
 .m-barre{padding-top:50px}
 
+/* Bas du mini-site : remplit l'écran jusqu'au bout du défilement (sinon un vide apparaît). */
+.m-pied{margin-top:16px; padding:22px 18px 30px; background:#141517; color:#F5F6F7}
+.m-pied-titre{font-size:15px; font-weight:600}
+.m-pied .m-ligne{background:rgba(245,246,247,.18); margin:9px 0}
+.m-pied-btn{display:inline-block; margin-top:12px; padding:8px 14px; border-radius:999px; background:#F5F6F7; color:#141517; font-size:10.5px; font-weight:600}
+
 /* --- Cartes : liseré dégradé et reflet sous la souris --- */
 .carte,.tarif,.repere,.etape{position:relative; overflow:hidden; isolation:isolate;
   border-color:transparent;
