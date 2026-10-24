@@ -255,7 +255,7 @@ document.getElementById("annee").textContent = new Date().getFullYear();
 
 // Compteur de visites (Cloudflare) : page vue, provenance et type d'appareil, sans cookie.
 // Adresse à renseigner une fois le compteur en ligne (voir webkal-app/compteur/README.md).
-const COMPTEUR = "";
+const COMPTEUR = "https://webkal-compteur.webkal.workers.dev";
 try {
   const params = new URLSearchParams(location.search);
   // « ?moi » sur ce navigateur : tes propres visites ne sont plus comptées (« ?compter » pour annuler).
