@@ -5,6 +5,13 @@
    du site : monochrome strict, verre dépoli, modes clair et sombre.
    ========================================================================== */
 
+/* Police Poppins hébergée sur le site (licence libre OFL) : pas de détour par les serveurs
+   de Google, donc deux connexions de moins avant d'afficher le texte. Latin seulement. */
+@font-face{font-family:"Poppins"; font-style:normal; font-weight:400; font-display:swap; src:url("fonts/poppins-400.woff2") format("woff2"); unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Poppins"; font-style:normal; font-weight:500; font-display:swap; src:url("fonts/poppins-500.woff2") format("woff2"); unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Poppins"; font-style:normal; font-weight:600; font-display:swap; src:url("fonts/poppins-600.woff2") format("woff2"); unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Poppins"; font-style:normal; font-weight:800; font-display:swap; src:url("fonts/poppins-800.woff2") format("woff2"); unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
 :root{
   /* Couleurs du site (monochrome, inchangées) */
   --bg:#ECECEE;
@@ -124,7 +131,6 @@ section{padding:96px 0 0; scroll-margin-top:110px}
 }
 .logo{display:flex; align-items:center; text-decoration:none; flex:none}
 .logo img{height:26px; width:auto; filter:var(--logo-filter)}
-.logo .marque{display:none}
 .menu{display:flex; align-items:center; gap:2px; margin-left:auto}
 .menu a:not(.btn){
   padding:10px 14px; border-radius:var(--r-pill); text-decoration:none;
@@ -276,7 +282,7 @@ section{padding:96px 0 0; scroll-margin-top:110px}
 .m-menu::after{content:""; position:absolute; left:0; right:0; top:2px; border-top:2px solid #121316}
 .m-image{margin:4px 14px 0; height:170px; border-radius:20px; background:
   radial-gradient(60% 70% at 28% 28%,#FFFFFF,transparent 60%),radial-gradient(70% 80% at 80% 72%,#8A8E96,transparent 62%),linear-gradient(135deg,#E9EAEE,#B5B8BF)}
-.m-titre{padding:16px 16px 6px; font-size:19px; font-weight:700; line-height:1.2; color:#121316}
+.m-titre{padding:16px 16px 6px; font-size:19px; font-weight:600; line-height:1.2; color:#121316}
 .m-ligne{height:7px; border-radius:4px; background:#E4E4E8; margin:7px 16px}
 .m-ligne.c{width:55%}
 .m-btn{margin:14px 16px; padding:11px; border-radius:999px; background:#141517; color:#fff; text-align:center; font-size:12px; font-weight:600}
@@ -348,7 +354,7 @@ section{padding:96px 0 0; scroll-margin-top:110px}
 }
 .tarif:hover{transform:translateY(-3px); box-shadow:var(--ombre)}
 .tarif h3{font-size:19px}
-.prix{font-size:clamp(36px, 4vw, 46px); font-weight:700; letter-spacing:-.02em; margin-top:14px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.prix{font-size:clamp(36px, 4vw, 46px); font-weight:600; letter-spacing:-.02em; margin-top:14px; font-variant-numeric:tabular-nums; white-space:nowrap}
 .prix small{font-size:15px; font-weight:500; color:var(--muted); margin-left:8px; letter-spacing:0}
 .tarif .pour{color:var(--ink-2); margin-top:6px}
 .tarif ul,.suivi ul{list-style:none; padding:0; margin:22px 0 26px; display:grid; gap:10px}
@@ -456,8 +462,8 @@ footer{padding:96px 0 28px}
   .pied-marque{grid-column:1/-1}
 }
 @media (max-width:599px){
-  .logo .complet{display:none}
-  .logo .marque{display:block; height:30px}
+  /* Sur téléphone, <picture> charge seulement le petit logo (images/marque.png). */
+  .logo img{height:30px}
   .menu .btn{padding:10px 16px; min-height:44px; font-size:14px}
   .vitre{padding:6px; border-radius:26px; margin-top:12px}
   .hero{padding:34px 18px; border-radius:20px}
@@ -583,13 +589,16 @@ html.apercu .ecran-site{display:none}
 
 /* --- Entrée de la page (seulement si l'appareil accepte les animations) --- */
 @media (prefers-reduced-motion:no-preference){
-  .mot span{animation:lettre 1.1s cubic-bezier(.2,.8,.2,1) both; animation-delay:calc(var(--i) * 70ms + 120ms)}
+  /* Entrée raccourcie : le texte d'accroche est lisible tout de suite, même si la page
+     arrive lentement (il n'attend plus la fin de l'animation du nom et du téléphone). */
+  .mot span{animation:lettre .9s cubic-bezier(.2,.8,.2,1) both; animation-delay:calc(var(--i) * 55ms + 60ms)}
   @keyframes lettre{from{opacity:0; transform:translateY(45%); filter:blur(10px)} to{opacity:1; transform:none; filter:none}}
-  .scene{animation:entree 1.5s cubic-bezier(.2,.8,.2,1) .5s both}
+  .scene{animation:entree 1.2s cubic-bezier(.2,.8,.2,1) .25s both}
   @keyframes entree{from{opacity:0; translate:0 70px} to{opacity:1; translate:0 0}}
-  .intro,.accueil .actions,.reseaux,.vertical{animation:fondu 1s ease 1s both}
+  .intro,.accueil .actions{animation:fondu .6s ease .1s both}
+  .reseaux,.vertical{animation:fondu .8s ease .5s both}
   @keyframes fondu{from{opacity:0; translate:0 14px} to{opacity:1; translate:0 0}}
-  .reperes{animation:fondu 1s ease 1.2s both}
+  .reperes{animation:fondu .6s ease .2s both}
 }
 
 @media (max-width:599px){

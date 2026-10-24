@@ -28,12 +28,13 @@
 <meta name="twitter:description" content="Des sites vitrines clairs et rapides pour les commerces, artisans et indépendants de Nouvelle-Calédonie.">
 <meta name="twitter:image" content="https://webkal.net/images/partage.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<!-- Polices hébergées sur le site : chargées en priorité, sans passer par Google. -->
+<link rel="preload" href="fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin>
 
 <script>if (new URLSearchParams(location.search).has("apercu")) document.documentElement.classList.add("apercu");</script>
-<link rel="stylesheet" href="styles.css?v=20261024-8">
+<link rel="stylesheet" href="styles.css?v=20261024-9">
 </head>
 
 <body>
@@ -46,8 +47,10 @@
   <div class="shell">
     <div class="top-in">
       <a class="logo" href="/" aria-label="WebKal Studios, retour en haut">
-        <img class="complet" src="images/logo.png" alt="WebKal Studios" width="662" height="238">
-        <img class="marque" src="images/marque.png" alt="WebKal Studios" width="214" height="232">
+        <picture>
+          <source media="(max-width:599px)" srcset="images/marque.png" width="83" height="90">
+          <img src="images/logo.png" alt="WebKal Studios" width="217" height="78">
+        </picture>
       </a>
       <nav class="menu">
         <a href="/services">Ce que nous faisons</a>
@@ -313,7 +316,7 @@
     <div class="pied pied-riche">
       <div class="pied-marque">
         <a class="logo" href="/" aria-label="WebKal Studios, accueil">
-          <img src="images/logo.png" alt="WebKal Studios" width="662" height="238">
+          <img src="images/logo.png" alt="WebKal Studios" width="217" height="78" loading="lazy">
         </a>
         <p>Sites vitrines pour les commerces, les artisans et les indépendants de Nouvelle-Calédonie.</p>
       </div>
@@ -340,7 +343,7 @@
   </div>
 </footer>
 
-<script src="site.js?v=20261024-8"></script>
+<script src="site.js?v=20261024-9"></script>
 
 </body>
 </html>

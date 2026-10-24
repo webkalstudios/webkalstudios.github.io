@@ -220,9 +220,14 @@ if (ecranSite && !dansApercu) {
     setTimeout(suivant, 2600);
   });
   // Chargé après la page elle-même, pour ne pas la ralentir.
-  addEventListener("load", () => {
-    ecranSite.src = "/?apercu";
-  }, { once: true });
+  // Pas sur une connexion lente ou en mode « économie de données » : l'aperçu léger reste affiché.
+  const reseau = navigator.connection;
+  const lent = reseau && (reseau.saveData || /(^|-)2g|3g/.test(reseau.effectiveType || ""));
+  if (!lent) {
+    addEventListener("load", () => {
+      ecranSite.src = "/?apercu";
+    }, { once: true });
+  }
 }
 
 // Apparition douce des blocs, désactivée si l'appareil préfère moins d'animation.
