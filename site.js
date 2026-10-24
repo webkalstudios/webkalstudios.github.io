@@ -252,3 +252,23 @@ if (douceur || !("IntersectionObserver" in window)) {
 }
 
 document.getElementById("annee").textContent = new Date().getFullYear();
+
+// Compteur de visites (Cloudflare) : page vue, provenance et type d'appareil, sans cookie.
+// Adresse à renseigner une fois le compteur en ligne (voir webkal-app/compteur/README.md).
+const COMPTEUR = "";
+try {
+  const params = new URLSearchParams(location.search);
+  // « ?moi » sur ce navigateur : tes propres visites ne sont plus comptées (« ?compter » pour annuler).
+  if (params.has("moi")) localStorage.setItem("webkal-ne-pas-compter", "1");
+  if (params.has("compter")) localStorage.removeItem("webkal-ne-pas-compter");
+  const exclu = localStorage.getItem("webkal-ne-pas-compter") === "1";
+
+  if (COMPTEUR && !dansApercu && !exclu && navigator.sendBeacon) {
+    // Arrivée par /services ou /comment-ca-se-passe : la vraie provenance a été gardée par la page relais.
+    const provenance = sessionStorage.getItem("provenance") ?? document.referrer;
+    sessionStorage.removeItem("provenance");
+    navigator.sendBeacon(`${COMPTEUR}/v`, JSON.stringify({ p: location.pathname, r: provenance }));
+  }
+} catch {
+  // Navigation privée stricte : on ne compte pas, sans gêner l'affichage.
+}

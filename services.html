@@ -28,6 +28,7 @@
 <script>
   // L'accueil lit cette demande et descend à la partie voulue.
   try {
+    sessionStorage.setItem("provenance", document.referrer);
     sessionStorage.setItem("partie", "services");
     location.replace("/");
   } catch (e) {
