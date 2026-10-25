@@ -2,3 +2,7 @@
 
 # Notes de travail internes : elles restent sur le Mac, pas en ligne.
 CLAUDE.md
+
+# Publication Cloudflare : réglages et copie envoyée, restent sur le Mac.
+deploy/
+.wrangler/
