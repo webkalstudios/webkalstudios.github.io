@@ -644,3 +644,13 @@ html.apercu .ecran-site{display:none}
 @media (max-width:780px){
   .suivi ul{grid-template-columns:1fr}
 }
+
+/* --- Options du formulaire de devis (1er novembre 2026) --- */
+.options{border:0; padding:0; margin:0; gap:10px}
+.options legend{font-size:14px; font-weight:500; margin-bottom:8px; padding:0}
+.option{display:flex; gap:14px; align-items:flex-start; padding:14px 16px; min-height:48px; cursor:pointer;
+  border:1px solid var(--line); border-radius:16px; background:var(--surface-2); font-size:14px; color:var(--ink-2); line-height:1.5}
+.option strong{display:block; font-weight:600; color:var(--ink); margin-bottom:2px}
+.option input{flex:none; width:20px; height:20px; min-height:0; margin-top:2px; padding:0; border:0; border-radius:4px; background:none; box-shadow:none; accent-color:var(--ink)}
+.option:has(input:checked){border-color:var(--ink); background:var(--surface)}
+.option:has(input:focus-visible){outline:2px solid var(--ink); outline-offset:3px}
