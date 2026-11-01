@@ -620,3 +620,17 @@ html.apercu .ecran-site{display:none}
 @media (max-width:599px){
   .legal{padding:26px 20px 30px}
 }
+
+/* --- Questions fréquentes (page Tarifs, 1er novembre 2026) --- */
+.faqs{display:grid; gap:12px; max-width:860px}
+.faq{border-radius:var(--r-carte); background:var(--surface); border:1px solid var(--line); box-shadow:var(--ombre-carte)}
+.faq summary{list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
+  gap:16px; min-height:56px; padding:16px 22px; border-radius:var(--r-carte)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary h3{font-size:17px; font-weight:500; letter-spacing:-.01em; margin:0}
+.faq summary::after{content:"+"; flex:none; width:32px; height:32px; display:grid; place-items:center;
+  border-radius:var(--r-pill); border:1px solid var(--line); font-size:20px; line-height:1; color:var(--ink-2)}
+.faq[open] summary::after{content:"–"}
+.faq summary:focus-visible{outline:2px solid var(--ink); outline-offset:3px}
+.faq p{padding:0 22px 20px; font-size:16px; line-height:1.65; color:var(--ink-2); max-width:70ch}
+.faq p a{color:var(--ink); text-underline-offset:3px}
