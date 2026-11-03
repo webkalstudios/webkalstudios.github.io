@@ -656,49 +656,20 @@ html.apercu .ecran-site{display:none}
 .option:has(input:focus-visible){outline:2px solid var(--ink); outline-offset:3px}
 
 /* ==========================================================================
-   PAGE EXEMPLES (4 novembre 2026) : un site de démonstration par bloc,
-   capture ordinateur dans une fenêtre de navigateur + téléphone posé devant.
+   PAGE EXEMPLES (4 novembre 2026) : un petit cadre cliquable par site,
+   qui ouvre le site dans un nouvel onglet.
    ========================================================================== */
-.ex-ecrans{position:relative; margin-right:clamp(28px, 6vw, 84px); margin-bottom:clamp(40px, 6vw, 72px)}
-.ex-ordi{margin:0; padding:10px; border-radius:var(--r-bloc); background:var(--surface); border:1px solid var(--line);
-  box-shadow:var(--ombre-vitre), var(--reflet)}
-.ex-barre{display:flex; align-items:center; gap:7px; padding:4px 6px 12px}
-.ex-barre i{width:10px; height:10px; border-radius:50%; background:var(--line)}
-.ex-barre span{margin-left:12px; padding:5px 14px; border-radius:var(--r-pill); background:var(--surface-2);
-  font-size:13px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0}
-.ex-ordi img{width:100%; height:auto; border-radius:14px}
-.ex-tel{position:absolute; margin:0; right:calc(-1 * clamp(28px, 6vw, 84px)); bottom:calc(-1 * clamp(40px, 6vw, 72px));
-  width:clamp(116px, 19%, 220px); padding:7px; border-radius:32px; background:var(--hero-bg); box-shadow:var(--ombre)}
-.ex-tel img{width:100%; height:auto; border-radius:26px}
-
-.ex-infos{display:grid; gap:40px clamp(40px, 6vw, 88px); align-items:start}
-@media (min-width:900px){ .ex-infos{grid-template-columns:minmax(0, 1.15fr) minmax(0, .85fr)} }
-.ex-infos h2{font-size:clamp(36px, 5vw, 64px); font-weight:500; letter-spacing:-.04em; line-height:1}
-.ex-infos p{color:var(--ink-2); font-size:17px; line-height:1.65; max-width:56ch; margin-top:18px}
-.ex-etiquettes{display:flex; flex-wrap:wrap; gap:8px; list-style:none; margin:18px 0 0; padding:0}
-.ex-etiquettes li{padding:6px 14px; border-radius:var(--r-pill); border:1px solid var(--line-strong); font-size:14px; color:var(--ink-2)}
-.ex-voir{padding:26px 26px 28px; border-radius:var(--r-bloc); background:var(--surface); border:1px solid var(--line); box-shadow:var(--ombre-carte)}
-.ex-voir h3{font-size:18px; font-weight:600}
-.ex-voir ul{list-style:none; margin:14px 0 0; padding:0}
-.ex-voir li{position:relative; padding:12px 0 12px 22px; border-top:1px solid var(--line); color:var(--ink-2); font-size:16px; line-height:1.5}
-.ex-voir li:first-child{border-top:0}
-.ex-voir li::before{content:""; position:absolute; left:2px; top:21px; width:8px; height:8px; border-radius:50%; background:var(--ink)}
-
-.ex-vues{display:grid; gap:20px; margin-top:56px}
-@media (min-width:700px){ .ex-vues{grid-template-columns:1fr 1fr} }
-.ex-vues figure{margin:0; padding:10px 10px 0; border-radius:var(--r-bloc); background:var(--surface); border:1px solid var(--line); box-shadow:var(--ombre-carte)}
-.ex-vues img{width:100%; height:auto; border-radius:14px}
-.ex-vues figcaption{padding:14px 8px 16px; font-size:15px; color:var(--ink-2)}
-.ex-note{margin-top:22px; font-size:14px; color:var(--ink-2)}
-
-@media (max-width:599px){
-  .ex-ecrans{margin-right:20px; margin-bottom:44px}
-  .ex-ordi{padding:6px; border-radius:18px}
-  .ex-barre{padding:2px 4px 8px; gap:5px}
-  .ex-barre i{width:7px; height:7px}
-  .ex-barre span{font-size:11px; padding:3px 10px; margin-left:6px}
-  .ex-ordi img{border-radius:10px}
-  .ex-tel{right:-20px; bottom:-44px; width:31%; padding:5px; border-radius:22px}
-  .ex-tel img{border-radius:18px}
-  .ex-voir{padding:20px 20px 22px}
+.exemples{display:grid; gap:20px; grid-template-columns:repeat(auto-fill, minmax(min(100%, 340px), 1fr))}
+.ex-cadre{display:block; padding:10px; border-radius:var(--r-bloc); background:var(--surface); border:1px solid var(--line);
+  box-shadow:var(--ombre-carte), var(--reflet); color:var(--ink); text-decoration:none;
+  transition:transform .3s cubic-bezier(.22, 1, .36, 1), box-shadow .3s, border-color .3s}
+.ex-cadre img{width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:14px}
+.ex-legende{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 8px 8px}
+.ex-legende strong{display:block; font-size:18px; font-weight:600}
+.ex-legende small{display:block; font-size:14px; color:var(--ink-2); margin-top:2px}
+.ex-ouvrir{display:inline-flex; align-items:center; gap:6px; flex:none; min-height:40px; padding:8px 14px;
+  border-radius:var(--r-pill); background:var(--hero-bg); color:var(--hero-fg); font-size:14px; font-weight:600}
+.ex-ouvrir svg{width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+@media (hover:hover) and (pointer:fine){
+  .ex-cadre:hover{transform:translateY(-3px); border-color:var(--line-strong)}
 }
