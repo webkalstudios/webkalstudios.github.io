@@ -23,6 +23,7 @@ Brief, maquette, intégration, relecture par le client, mise en ligne. Le client
 ## Pages
 
 - [Accueil](https://webkal.net/) : ce que fait le studio et comment se passe un projet
+- [Exemples](https://webkal.net/exemples) : sites de démonstration à ouvrir (Obsidian, landing page animée)
 - [Tarifs et questions fréquentes](https://webkal.net/tarifs)
 - [Demander un devis](https://webkal.net/contact)
 - [Mentions légales](https://webkal.net/mentions-legales)
